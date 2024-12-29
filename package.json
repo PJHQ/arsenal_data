@@ -1,0 +1,15 @@
+{
+  "name": "arsenal",
+  "module": "main.ts",
+  "type": "module",
+  "scripts": {
+    "sort": "bun run main.ts"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
