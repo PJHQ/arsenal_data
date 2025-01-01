@@ -74,7 +74,6 @@
   "rhsusf_acc_premier_anpvs27",
   "rhsusf_acc_premier_low",
   "rhsusf_acc_premier_mrds",
-  "rhsusf_acc_rotex5_tan",
   "rhsusf_acc_rvg_blk",
   "rhsusf_acc_rvg_de",
   "rhsusf_acc_su230",
@@ -86,7 +85,5 @@
   "rhsusf_acc_su230a_mrds",
   "rhsusf_acc_su230a_mrds_c",
   "rhsusf_acc_tdstubby_blk",
-  "rhsusf_acc_tdstubby_tan",
-  "rhsusf_acc_ACOG",
-  "rhsusf_acc_rotex5_grey"
+  "rhsusf_acc_tdstubby_tan"
 ]
