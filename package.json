@@ -3,7 +3,8 @@
   "module": "main.ts",
   "type": "module",
   "scripts": {
-    "sort": "bun run main.ts"
+    "arsenal": "bun run generate_arsenal.ts",
+    "extract": "bun run extract_config.ts"
   },
   "peerDependencies": {
     "typescript": "^5.5.3"
