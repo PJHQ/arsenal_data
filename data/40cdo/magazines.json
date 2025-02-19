@@ -116,5 +116,9 @@
   "rhs_mag_m713_Red",
   "rhs_mag_m714_White",
   "rhs_mag_m715_Green",
-  "rhs_mag_m716_yellow"
+  "rhs_mag_m716_yellow",
+  "Scotts_EMAG_M855A1",
+  "Scotts_EMAG_M855A1_Tracer",
+  "Scotts_EMAG_Magpul_M855A1",
+  "Scotts_EMAG_Magpul_M855A1_Tracer"
 ]
