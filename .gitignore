@@ -173,3 +173,6 @@ dist
 
 # Finder (MacOS) folder config
 .DS_Store
+
+# Ignore Arma 3 config.cpp files used to extract items
+config.cpp
