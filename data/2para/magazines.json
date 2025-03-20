@@ -121,5 +121,13 @@
   "rhs_mag_maaws_HE",
   "rhs_mag_maaws_HEDP",
   "rhs_mag_maaws_HEAT",
-  "rhs_fgm148_magazine_AT"
+  "rhs_fgm148_magazine_AT",
+  "rhsusf_200rnd_556x45_mixed_box",
+  "rhsusf_200Rnd_556x45_box",
+  "rhsusf_200rnd_556x45_M855_mixed_box",
+  "rhsusf_200rnd_556x45_M855_box",
+  "rhsusf_200Rnd_556x45_M855_soft_pouch",
+  "rhsusf_200Rnd_556x45_M855_mixed_soft_pouch",
+  "rhsusf_200Rnd_556x45_soft_pouch",
+  "rhsusf_200Rnd_556x45_mixed_soft_pouch"
 ]
