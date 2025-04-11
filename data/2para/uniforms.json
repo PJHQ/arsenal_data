@@ -1,18 +1,6 @@
 [
-  "mpx_mtp_1para_uniform",
-  "mpx_mtp_1para_uniform_k",
-  "mpx_mtp_1para_uniform_r",
-  "mpx_mtp_1para_uniform_kr",
   "mpx_mtp_2para_uniform",
   "mpx_mtp_2para_uniform_k",
   "mpx_mtp_2para_uniform_r",
-  "mpx_mtp_2para_uniform_kr",
-  "mpx_mtp_3para_uniform_k",
-  "mpx_mtp_3para_uniform",
-  "mpx_mtp_3para_uniform_3para_r",
-  "mpx_mtp_3para_uniform_kr",
-  "mpx_mtp_4para_uniform",
-  "mpx_mtp_4para_uniform_k",
-  "mpx_mtp_4para_uniform_r",
-  "mpx_mtp_4para_uniform_kr"
+  "mpx_mtp_2para_uniform_kr"
 ]
