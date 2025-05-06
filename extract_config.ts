@@ -8,37 +8,31 @@ function extractClassNames(filePath: string): string[] {
     // All main class names to extract
     const classNames: string[] = [];
 
-    // Extract CfgWeapons section specifically
-    // This handles deeply nested structures better than trying to match the entire section
-    const cfgWeaponsMatch = content.match(/class\s+CfgWeapons\s*\{([\s\S]*?)(?:\n\};|\};$)/);
-
-    if (cfgWeaponsMatch && cfgWeaponsMatch[1]) {
-      const cfgWeaponsContent = cfgWeaponsMatch[1];
-
-      // Look for equipment classes that are derived from ItemCore
-      const itemPattern = /class\s+(SCM_[A-Za-z0-9_]+)\s*:\s*ItemCore/g;
-
-      let match;
-      while ((match = itemPattern.exec(cfgWeaponsContent)) !== null) {
-        classNames.push(match[1]);
-      }
+    // Find the CfgWeapons bracket ranges
+    let cfgWeaponsIndex = content.indexOf("class CfgWeapons");
+    if (cfgWeaponsIndex === -1) {
+      return classNames;
     }
 
-    // Extract from CfgPatches if needed
-    const cfgPatchesMatch = content.match(/class\s+CfgPatches\s*\{([\s\S]*?)(?:\n\};|\};$)/);
-    if (cfgPatchesMatch && cfgPatchesMatch[1]) {
-      const cfgPatchesContent = cfgPatchesMatch[1];
+    // Find all classes with scope = 2 directly
+    // This regex pattern looks for class definitions followed by content with scope = 2
+    const scopeClassPattern = /class\s+([A-Za-z0-9_]+)(?:\s*:\s*[A-Za-z0-9_]+)?\s*\{(?:(?!\bclass\b).)*?\bscope\s*=\s*2\b/gs;
 
-      // Look for mod classes
-      const patchPattern = /class\s+([A-Za-z0-9_]+)(?:\s*:\s*[A-Za-z0-9_]+)?\s*\{[^{}]*\}/g;
+    let match;
+    while ((match = scopeClassPattern.exec(content)) !== null) {
+      const className = match[1];
 
-      let match;
-      while ((match = patchPattern.exec(cfgPatchesContent)) !== null) {
-        const className = match[1];
-        if (!className.startsWith('Cfg')) {
-          classNames.push(className);
-        }
+      // Skip base classes and config sections
+      if (className === "ItemCore" ||
+          className === "InventoryItem_Base_F" ||
+          className === "HeadgearItem" ||
+          className === "CfgWeapons" ||
+          className === "CfgPatches") {
+        continue;
       }
+
+      // Add the classname to our list
+      classNames.push(className);
     }
 
     return classNames;
