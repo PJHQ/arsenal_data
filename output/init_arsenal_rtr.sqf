@@ -1,4 +1,4 @@
-"Type: rtr | Last Updated: 2025-04-11";
+"Type: rtr | Last Updated: 2025-05-19";
 [this, false] call ace_dragging_fnc_setDraggable;
 [this, false] call ace_dragging_fnc_setCarryable;
 [this,

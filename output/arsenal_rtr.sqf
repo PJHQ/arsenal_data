@@ -1,4 +1,4 @@
-"Type: rtr | Last Updated: 2025-04-11";
+"Type: rtr | Last Updated: 2025-05-19";
 params ["_Arsenal"];
 [_Arsenal, false] call ace_dragging_fnc_setDraggable;
 [_Arsenal, false] call ace_dragging_fnc_setCarryable;
