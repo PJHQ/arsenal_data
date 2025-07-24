@@ -161,27 +161,64 @@ const { values, positionals } = parseArgs({
       type: "string",
       short: "f",
     },
+    all: {
+      type: "boolean",
+      short: "a",
+      default: false,
+    },
   },
   strict: true,
   allowPositionals: true,
 });
 
+async function processAllDataFolders(): Promise<void> {
+  const dataPath = "data";
+  try {
+    const folders = await fs.readdir(dataPath);
+    for (const folder of folders) {
+      const folderPath = path.join(dataPath, folder);
+      const stat = await fs.stat(folderPath);
+      if (stat.isDirectory()) {
+        console.log(`\n=== Processing folder: ${folder} ===`);
+        let data = await loadAndCombineData(folderPath);
+
+        if (!values["no-check"]) {
+          printDuplicates(data);
+        }
+
+        data = removeDuplicates(data);
+        data = sortData(data);
+
+        await writeToFile(data, folder);
+      }
+    }
+  } catch (error) {
+    console.error(`Error processing data folders: ${error}`);
+    process.exit(1);
+  }
+}
+
 let dataFolderPath: string = "";
-if (values.folder) {
+if (values.all) {
+  await processAllDataFolders();
+} else if (values.folder) {
   dataFolderPath = values.folder;
 } else {
-  throw new Error("Missing --folder (-f) and data path");
+  throw new Error("Missing --folder (-f) and data path, or use --all (-a) to process all folders");
 }
 
-let data = await loadAndCombineData(dataFolderPath);
+// Only process single folder if not using --all option
+if (!values.all && dataFolderPath) {
+  let data = await loadAndCombineData(dataFolderPath);
 
-if (!values["no-check"]) {
-  printDuplicates(data);
+  if (!values["no-check"]) {
+    printDuplicates(data);
+  }
+
+  data = removeDuplicates(data);
+  data = sortData(data);
+
+  const outputName = dataFolderPath.split("/").pop()
+
+  if (values.folder) await writeToFile(data, outputName ?? "unknown");
 }
-
-data = removeDuplicates(data);
-data = sortData(data);
-
-const outputName = dataFolderPath.split("/").pop()
-
-if (values.folder) await writeToFile(data, outputName ?? "unknown");
