@@ -4,14 +4,15 @@
   "type": "module",
   "scripts": {
     "arsenal": "bun run generate_arsenal.ts",
-    "generate": "bun run generate_arsenal.ts",
+    "generate": "bun arsenal",
+    "gen": "bun arsenal",
     "extract": "bun run extract_config.ts"
   },
   "peerDependencies": {
-    "typescript": "^5.5.3"
+    "typescript": "^5.9.2"
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "^1.2.20"
   }
 }
