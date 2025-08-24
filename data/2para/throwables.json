@@ -14,14 +14,12 @@
   "Chemlight_green",
   "Chemlight_red",
   "Chemlight_yellow",
-  "HandGrenade",
   "SmokeShellBlue",
   "SmokeShellGreen",
   "SmokeShellOrange",
   "SmokeShellPurple",
   "SmokeShellRed",
   "SmokeShellYellow",
-  "UK3CB_BAF_HandGrenade_Blank",
   "UK3CB_BAF_SmokeShell",
   "UK3CB_BAF_SmokeShellBlue",
   "UK3CB_BAF_SmokeShellGreen",
@@ -29,5 +27,6 @@
   "UK3CB_BAF_SmokeShellPurple",
   "UK3CB_BAF_SmokeShellRed",
   "UK3CB_BAF_SmokeShellYellow",
+  "rhs_mag_m67",
   "rhs_mag_mk84"
 ]

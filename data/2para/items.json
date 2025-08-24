@@ -9,13 +9,11 @@
   "ACE_Canteen",
   "ACE_Canteen_Empty",
   "ACE_Canteen_Half",
-  "ACE_Cellphone",
   "ACE_Clacker",
   "ACE_DAGR",
-  "ACE_DeadManSwitch",
   "ACE_DefusalKit",
-  "ACE_EarPlugs",
   "ACE_EHP",
+  "ACE_EarPlugs",
   "ACE_EntrenchingTool",
   "ACE_Flashlight_KSF1",
   "ACE_Flashlight_MX991",
@@ -93,10 +91,6 @@
   "ACE_tourniquet",
   "ACE_wirecutter",
   "DRNP_AL6P",
-  "FISH_Cream_Kit_Desert",
-  "FISH_Cream_Kit_Europe",
-  "FISH_Cream_Kit_Snow",
-  "FISH_Cream_Kit_Tropical",
   "ItemAndroid",
   "ItemMicroDAGR",
   "ItemcTab",
@@ -208,5 +202,6 @@
   "kat_stethoscope",
   "kat_suction",
   "kat_ultrasound",
-  "kat_vacuum"
+  "kat_vacuum",
+  "tsp_breach_shock"
 ]
