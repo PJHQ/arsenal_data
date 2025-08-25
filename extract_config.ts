@@ -8,15 +8,13 @@ function extractClassNames(filePath: string): string[] {
     // All main class names to extract
     const classNames: string[] = [];
 
-    // Find the CfgWeapons bracket ranges
-    let cfgWeaponsIndex = content.indexOf("class CfgWeapons");
-    if (cfgWeaponsIndex === -1) {
-      return classNames;
-    }
+    // Check if this is a config.cpp file with CfgWeapons section
+    const cfgWeaponsIndex = content.indexOf("class CfgWeapons");
+    const hasCfgWeapons = cfgWeaponsIndex !== -1;
 
     // Find all classes with scope = 2 directly
     // This regex pattern looks for class definitions followed by content with scope = 2
-    const scopeClassPattern = /class\s+([A-Za-z0-9_]+)(?:\s*:\s*[A-Za-z0-9_]+)?\s*\{(?:(?!\bclass\b).)*?\bscope\s*=\s*2\b/gs;
+    const scopeClassPattern = /class\s+([A-Za-z0-9_]+)(?:\s*:\s*[A-Za-z0-9_]+)?\s*\{(?:(?!\bclass\s+[A-Za-z0-9_]+(?:\s*:\s*[A-Za-z0-9_]+)?\s*\{).)*?\bscope\s*=\s*2\b/gs;
 
     let match;
     while ((match = scopeClassPattern.exec(content)) !== null) {
@@ -27,8 +25,18 @@ function extractClassNames(filePath: string): string[] {
           className === "InventoryItem_Base_F" ||
           className === "HeadgearItem" ||
           className === "CfgWeapons" ||
-          className === "CfgPatches") {
+          className === "CfgPatches" ||
+          className === "ItemInfo" ||
+          className === "XtdGearInfo") {
         continue;
+      }
+
+      // For config.cpp files, only include classes if we're in the CfgWeapons section
+      if (hasCfgWeapons) {
+        const classStartIndex = content.indexOf(match[0]);
+        if (classStartIndex < cfgWeaponsIndex) {
+          continue; // Skip classes before CfgWeapons section
+        }
       }
 
       // Add the classname to our list
