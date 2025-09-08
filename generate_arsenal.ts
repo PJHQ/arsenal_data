@@ -98,7 +98,7 @@ async function compareWithFile(
 }
 
 async function writeToFile(data: string[], prefix: string): Promise<void> {
-  const distFolder = "output";
+  const distFolder = "output_arsenal";
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().split("T")[0];
 
@@ -125,7 +125,7 @@ async function writeToFile(data: string[], prefix: string): Promise<void> {
 ] call ace_arsenal_fnc_initBox;
 `;
 
-    const sqfContentExec = `"Type: ${prefix} | Last Updated: ${formattedDate}";
+  const sqfContentExec = `"Type: ${prefix} | Last Updated: ${formattedDate}";
 params ["_Arsenal"];
 [_Arsenal, false] call ace_dragging_fnc_setDraggable;
 [_Arsenal, false] call ace_dragging_fnc_setCarryable;
@@ -157,9 +157,9 @@ const { values, positionals } = parseArgs({
       type: "boolean",
       default: false,
     },
-    folder: {
+    unit: {
       type: "string",
-      short: "f",
+      short: "u",
     },
     all: {
       type: "boolean",
@@ -171,54 +171,39 @@ const { values, positionals } = parseArgs({
   allowPositionals: true,
 });
 
-async function processAllDataFolders(): Promise<void> {
-  const dataPath = "data";
+
+if (values.all) {
+  // Process all unit folders under data_arsenal
+  const dataPath = "data_arsenal";
   try {
     const folders = await fs.readdir(dataPath);
     for (const folder of folders) {
       const folderPath = path.join(dataPath, folder);
       const stat = await fs.stat(folderPath);
       if (stat.isDirectory()) {
-        console.log(`\n=== Processing folder: ${folder} ===`);
+        console.log(`\n=== Processing unit: ${folder} ===`);
         let data = await loadAndCombineData(folderPath);
-
         if (!values["no-check"]) {
           printDuplicates(data);
         }
-
         data = removeDuplicates(data);
         data = sortData(data);
-
         await writeToFile(data, folder);
       }
     }
   } catch (error) {
-    console.error(`Error processing data folders: ${error}`);
+    console.error(`Error processing data_arsenal folders: ${error}`);
     process.exit(1);
   }
-}
-
-let dataFolderPath: string = "";
-if (values.all) {
-  await processAllDataFolders();
-} else if (values.folder) {
-  dataFolderPath = values.folder;
-} else {
-  throw new Error("Missing --folder (-f) and data path, or use --all (-a) to process all folders");
-}
-
-// Only process single folder if not using --all option
-if (!values.all && dataFolderPath) {
+} else if (values.unit) {
+  const dataFolderPath = path.join("data_arsenal", values.unit);
   let data = await loadAndCombineData(dataFolderPath);
-
   if (!values["no-check"]) {
     printDuplicates(data);
   }
-
   data = removeDuplicates(data);
   data = sortData(data);
-
-  const outputName = dataFolderPath.split("/").pop()
-
-  if (values.folder) await writeToFile(data, outputName ?? "unknown");
+  await writeToFile(data, values.unit);
+} else {
+  throw new Error("Missing --unit (-u) argument specifying the unit folder under data_arsenal, or use --all (-a) to process all units");
 }

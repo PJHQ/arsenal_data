@@ -4,8 +4,7 @@
   "type": "module",
   "scripts": {
     "arsenal": "bun run generate_arsenal.ts",
-    "generate": "bun arsenal",
-    "gen": "bun arsenal",
+    "loadouts": "bun run generate_loadouts.ts",
     "extract": "bun run extract_config.ts"
   },
   "peerDependencies": {
