@@ -5,6 +5,8 @@
   "ACE_Vector",
   "ACE_VectorDay",
   "Binocular",
+  "DRNP_AL6P",
+  "DRNP_AR2P",
   "DemoCharge_Remote_Mag",
   "ItemCompass",
   "ItemGPS",
@@ -22,6 +24,7 @@
   "tsp_breach_linear_mag",
   "tsp_breach_package_mag",
   "tsp_breach_popper_mag",
+  "tsp_breach_shock",
   "tsp_breach_silhouette_mag",
   "tsp_breach_stick_mag"
 ]
