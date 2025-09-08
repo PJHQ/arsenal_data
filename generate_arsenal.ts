@@ -98,7 +98,7 @@ async function compareWithFile(
 }
 
 async function writeToFile(data: string[], prefix: string): Promise<void> {
-  const distFolder = "output_arsenal";
+  const distFolder = "output";
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().split("T")[0];
 
@@ -171,10 +171,9 @@ const { values, positionals } = parseArgs({
   allowPositionals: true,
 });
 
+const dataPath = "data_arsenal";
 
 if (values.all) {
-  // Process all unit folders under data_arsenal
-  const dataPath = "data_arsenal";
   try {
     const folders = await fs.readdir(dataPath);
     for (const folder of folders) {
@@ -196,7 +195,7 @@ if (values.all) {
     process.exit(1);
   }
 } else if (values.unit) {
-  const dataFolderPath = path.join("data_arsenal", values.unit);
+  const dataFolderPath = path.join(dataPath, values.unit);
   let data = await loadAndCombineData(dataFolderPath);
   if (!values["no-check"]) {
     printDuplicates(data);
